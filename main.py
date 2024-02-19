@@ -1,6 +1,7 @@
 from Tokenisation import tokenisation as tkn
 from Stemming import stemming as stm
 from Lemmatization import lemmatization as lmt
+from POS_Tagging import pos_tagging as pos
 
 text = 'I love this flavor! It\'s by far the best choice and my go-to whenever I go to the grocery store. I wish they would restock it more often though.'
 
@@ -12,7 +13,6 @@ print("\n---------------------------\n")
 # Tokenize by sentence
 print(tkn.sentence_tokenisation(text))
 print("\n---------------------------\n")
-
 
 words = ['Connects','Connecting','Connections','Connected','Connection','Connectings','Connect']
 
@@ -55,3 +55,21 @@ print(lmt.stanza_lemma(sentence))
 
 print("\nLemminflect Lemmatizer")
 print(lmt.lemminflect_lemma(words))
+
+#POS Tagging
+
+#POS using nltk:
+
+print("\nNltk POS Tagger")
+
+# In this I have created two ways to Pos tag:
+# 1. Passing a sentence to get the pos tag
+# 2. Passing a list of words
+
+# 1st Method
+print("\nSentence: ", text, "\n")
+print(pos.nltk_postag(text), "\n")
+
+# 2nd Method
+print("Words: ", words, "\n")
+print(pos.nltk_postag(words=words))
