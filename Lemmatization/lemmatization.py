@@ -60,7 +60,7 @@ and extra data, suitable for advanced text analysis requiring more computational
 processing tasks, offering top performance but requiring significant computational resources.
 """
 
-def spacy_lemma(words, model=0):
+def spacy_lemma(sentence, model=0):
     
     #TODO - Fix the model not found error
     
@@ -75,5 +75,7 @@ def spacy_lemma(words, model=0):
     
     lemmatized_words = []
     
-    for word in words:
-        lemmatized_words.append(spacy_model(word)[0].lemma_)
+    for word in spacy_model(sentence):
+        lemmatized_words.append(word.lemma_)
+        
+    return lemmatized_words
