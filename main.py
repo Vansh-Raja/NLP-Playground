@@ -39,7 +39,14 @@ print(lmt.nltk_lemma(words, pos='v'))
 print("\nNltk Lemmatizer Auto")
 print(lmt.nltk_lemma_auto(words))
 
+sentence = "best well better was were is am"
+
 # Lemmatize using spacy_lemma
 
 print("\nSpacy Lemmatizer")
-print(lmt.spacy_lemma(words, model=0))
+print(lmt.spacy_lemma(sentence, model=0))
+
+# Lemmatize using stanza_lemma
+
+print("\nStanza Lemmatizer")
+print(lmt.stanza_lemma(sentence))

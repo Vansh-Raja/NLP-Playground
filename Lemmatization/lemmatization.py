@@ -2,6 +2,7 @@ from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import nltk
 import spacy 
+import stanza
 
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
@@ -61,11 +62,8 @@ processing tasks, offering top performance but requiring significant computation
 """
 
 def spacy_lemma(sentence, model=0):
-    
-    #TODO - Fix the model not found error
-    
+        
     models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
-    
     try:
         spacy_model = spacy.load(models[model])
         
@@ -75,7 +73,21 @@ def spacy_lemma(sentence, model=0):
     
     lemmatized_words = []
     
-    for word in spacy_model(sentence):
-        lemmatized_words.append(word.lemma_)
+    processed = spacy_model(sentence)
+    
+    for token in processed:
+        lemmatized_words.append(token.lemma_)
         
     return lemmatized_words
+
+def stanza_lemma(sentence):
+    stanza_model = stanza.Pipeline(lang='en', processors='tokenize,mwt,pos,lemma')
+    processed = stanza_model(sentence)
+    
+    lemmatized_words = [] 
+    for sent in processed.sentences:
+        for word in sent.words:
+            lemmatized_words.append(word.lemma)
+            
+    return lemmatized_words
+    
