@@ -50,3 +50,8 @@ print(lmt.spacy_lemma(sentence, model=0))
 
 print("\nStanza Lemmatizer")
 print(lmt.stanza_lemma(sentence))
+
+# Lemmatize using lemminflect_lemma
+
+print("\nLemminflect Lemmatizer")
+print(lmt.lemminflect_lemma(words))

@@ -3,6 +3,7 @@ from nltk.corpus import wordnet
 import nltk
 import spacy 
 import stanza
+from lemminflect import getLemma
 
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
@@ -90,4 +91,20 @@ def stanza_lemma(sentence):
             lemmatized_words.append(word.lemma)
             
     return lemmatized_words
+
+def lemminflect_lemma(words):
     
+    pos = []
+    spacy_model = spacy.load('en_core_web_sm')
+    doc = spacy_model(" ".join(words))
+    
+    for token in doc:
+        pos.append(token.pos_)
+
+    lemmatized_words = []
+    
+    for word in words:
+        lemmatized_words.append(getLemma(word, upos = pos[words.index(word)]))
+        
+    return lemmatized_words
+
