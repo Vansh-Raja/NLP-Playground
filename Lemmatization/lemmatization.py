@@ -1,6 +1,7 @@
 from nltk.stem import WordNetLemmatizer
 from nltk.corpus import wordnet
 import nltk
+import spacy 
 
 nltk.download('wordnet')
 nltk.download('averaged_perceptron_tagger')
@@ -43,4 +44,36 @@ def nltk_lemma_auto(words):
         
     return lemmatized_words
     
+"""
+Different types of spacy models:
+
+1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition,
+suitable for lightweight text processing tasks.
+   
+2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional
+features compared to the small model, suitable for a wide range of text processing tasks.
+
+3. **en_core_web_lg**: Large model providing high accuracy and coverage, including word vectors
+and extra data, suitable for advanced text analysis requiring more computational resources.
+
+4. **en_core_web_trf**: Transformer-based model using state-of-the-art architecture for text
+processing tasks, offering top performance but requiring significant computational resources.
+"""
+
+def spacy_lemma(words, model=0):
     
+    #TODO - Fix the model not found error
+    
+    models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
+    
+    try:
+        spacy_model = spacy.load(models[model])
+        
+    except:
+        print("Model not found, using default model en_core_web_sm")
+        spacy_model = spacy.load('en_core_web_sm')
+    
+    lemmatized_words = []
+    
+    for word in words:
+        lemmatized_words.append(spacy_model(word)[0].lemma_)

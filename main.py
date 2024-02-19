@@ -38,3 +38,8 @@ print(lmt.nltk_lemma(words, pos='v'))
 
 print("\nNltk Lemmatizer Auto")
 print(lmt.nltk_lemma_auto(words))
+
+# Lemmatize using spacy_lemma
+
+print("\nSpacy Lemmatizer")
+print(lmt.spacy_lemma(words, model=0))
