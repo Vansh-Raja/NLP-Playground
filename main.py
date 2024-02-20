@@ -3,6 +3,8 @@ from Stemming import stemming as stm
 from Lemmatization import lemmatization as lmt
 from POS_Tagging import pos_tagging as pos
 
+from Chunking import chunking as chink
+
 text = 'I love this flavor! It\'s by far the best choice and my go-to whenever I go to the grocery store. I wish they would restock it more often though.'
 
 # Tokenize by word
@@ -73,3 +75,16 @@ print(pos.nltk_postag(text), "\n")
 # 2nd Method
 print("Words: ", words, "\n")
 print(pos.nltk_postag(words=words))
+
+# Chunking using NLTK:
+
+print("\nNLTK Chunking")
+
+# I am implementing a combined Noun Phrase (NP),
+# Verb Phrase (VP), and Prepositional Phrase (PP)
+# Chunking first
+
+resultChunks = chink.nltkChunking(text)
+
+print("\nChunking Result:\n")
+resultChunks.pretty_print()
