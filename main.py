@@ -76,6 +76,10 @@ print(pos.nltk_postag(text), "\n")
 print("Words: ", words, "\n")
 print(pos.nltk_postag(words=words))
 
+# POS using spacy:
+print("\nSpacy POS Tagger")
+print(pos.spacy_postag(text))
+
 # Chunking using NLTK:
 
 print("\nNLTK Chunking")
