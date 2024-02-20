@@ -73,3 +73,7 @@ print(pos.nltk_postag(text), "\n")
 # 2nd Method
 print("Words: ", words, "\n")
 print(pos.nltk_postag(words=words))
+
+# POS using spacy:
+print("\nSpacy POS Tagger")
+print(pos.spacy_postag(text))

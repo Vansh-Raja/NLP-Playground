@@ -13,8 +13,10 @@ def spacy_postag(sentence: str):
     #TODO
     
     spacy_model = spacy.load('en_core_web_sm')
-    postag = []
+    postag = {}
     
     for token in spacy_model(sentence):
-        pass
+        postag[token.text] = token.pos_
+        
+    return postag
 
