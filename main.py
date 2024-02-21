@@ -2,7 +2,6 @@ from Tokenisation import tokenisation as tkn
 from Stemming import stemming as stm
 from Lemmatization import lemmatization as lmt
 from POS_Tagging import pos_tagging as pos
-
 from Chunking import chunking as chink
 
 text = 'I love this flavor! It\'s by far the best choice and my go-to whenever I go to the grocery store. I wish they would restock it more often though.'
@@ -80,15 +79,29 @@ print(pos.nltk_postag(words=words))
 print("\nSpacy POS Tagger")
 print(pos.spacy_postag(text))
 
+# CHunking (NP, VP, PP)
+
 # Chunking using NLTK:
 
-print("\nNLTK Chunking")
+print("\nNLTK Chunking:\n")
 
 # I am implementing a combined Noun Phrase (NP),
 # Verb Phrase (VP), and Prepositional Phrase (PP)
-# Chunking first
+# Chunking using the NLTK library
 
 resultChunks = chink.nltkChunking(text)
 
-print("\nChunking Result:\n")
 resultChunks.pretty_print()
+
+# Chunking using spaCy:
+
+print("\nspaCy Chunking:\n")
+
+# Now, I have implemented the same type of
+# chunking but using the spaCy library
+
+resultChunks = chink.spacyChunking(text)
+
+print("Noun Phrases (NP):", resultChunks["NP"])
+print("Verb Phrases (VP):", resultChunks["VP"])
+print("Prepositional Phrases (PP):", resultChunks["PP"])

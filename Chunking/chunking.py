@@ -1,4 +1,6 @@
 import nltk
+import spacy
+
 
 def nltkChunking(sentence):
     tokens = nltk.word_tokenize(sentence)
@@ -17,6 +19,32 @@ def nltkChunking(sentence):
     chunkParser = nltk.RegexpParser(grammar)
 
     # Perform parsing to identify and group chunks
-    combinedChunks = chunkParser.parse(posTags)
+    nltkChunks = chunkParser.parse(posTags)
 
-    return combinedChunks
+    return nltkChunks
+
+
+def spacyChunking(sentence):
+    nlp = spacy.load("en_core_web_sm")
+
+    doc = nlp(sentence)
+
+    # Extract NP, VP, and PP chunks
+    spacyChunks = {"NP": [], "VP": [], "PP": []}
+
+    # Since "NP," "VP," and "PP" are not standard dependency
+    # labels in spaCy, I have relied on the syntactic
+    # structure provided by the dependency parse tree.
+
+    for token in doc:
+        # Check if the token is a noun or pronoun (common in NP)
+        if token.pos_ in ["NOUN", "PROPN", "PRON"]:
+            spacyChunks["NP"].append(token.text)
+        # Check if the token is a verb (common in VP)
+        elif token.pos_ == "VERB":
+            spacyChunks["VP"].append(token.text)
+        # Check if the token is a preposition (common in PP)
+        elif token.pos_ == "ADP":
+            spacyChunks["PP"].append(token.text)
+
+    return spacyChunks
