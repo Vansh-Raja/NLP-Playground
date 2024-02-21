@@ -2,6 +2,7 @@ from Tokenisation import tokenisation as tkn
 from Stemming import stemming as stm
 from Lemmatization import lemmatization as lmt
 from POS_Tagging import pos_tagging as pos
+from NamedEntityRecognition import namedentityrecognition as ner
 from Chunking import chunking as chink
 
 text = 'I love this flavor! It\'s by far the best choice and my go-to whenever I go to the grocery store. I wish they would restock it more often though.'
@@ -104,3 +105,22 @@ resultChunks = chink.spacyChunking(text)
 print("Noun Phrases (NP):", resultChunks["NP"])
 print("Verb Phrases (VP):", resultChunks["VP"])
 print("Prepositional Phrases (PP):", resultChunks["PP"])
+
+# Chunking using spaCy:
+
+print("\nspaCy Chunking:\n")
+
+# Now, I have implemented the same type of
+# chunking but using the spaCy library
+
+resultChunks = chink.spacyChunking(text)
+print("Noun Phrases (NP):", resultChunks["NP"])
+print("Verb Phrases (VP):", resultChunks["VP"])
+print("Prepositional Phrases (PP):", resultChunks["PP"])
+
+text = "Washington DC is the home to the White House"
+
+# Named Entity Recognition
+
+print("Named Entity Recognition")
+print(ner.spacy_ner(text))

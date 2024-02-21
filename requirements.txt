@@ -2,6 +2,7 @@ nltk
 spacy
 stanza
 lemminflect
+streamlit
 
 # For spacy models:
 # python -m spacy download en_core_web_sm
