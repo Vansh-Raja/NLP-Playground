@@ -51,7 +51,7 @@ Different types of spacy models:
 
 1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition,
 suitable for lightweight text processing tasks.
-   
+
 2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional
 features compared to the small model, suitable for a wide range of text processing tasks.
 

@@ -23,9 +23,16 @@ def nltkChunking(sentence):
     return nltkChunks
 
 
-def spacyChunking(sentence):
-    nlp = spacy.load("en_core_web_sm")
-    doc = nlp(sentence)
+def spacyChunking(sentence, model=0):
+    models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
+    try:
+        spacy_model = spacy.load(models[model])
+
+    except:
+        print("Model not found, using default model en_core_web_sm")
+        spacy_model = spacy.load('en_core_web_sm')
+
+    doc = spacy_model(sentence)
 
     # Extract NP, VP, and PP chunks
     spacyChunks = {"NP": [], "VP": [], "PP": []}
