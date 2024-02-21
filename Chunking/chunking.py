@@ -4,7 +4,6 @@ import spacy
 
 def nltkChunking(sentence):
     tokens = nltk.word_tokenize(sentence)
-
     posTags = nltk.pos_tag(tokens)
 
     # Combined grammar for NP, VP, and PP chunking
@@ -26,7 +25,6 @@ def nltkChunking(sentence):
 
 def spacyChunking(sentence):
     nlp = spacy.load("en_core_web_sm")
-
     doc = nlp(sentence)
 
     # Extract NP, VP, and PP chunks

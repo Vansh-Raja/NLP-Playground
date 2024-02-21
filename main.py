@@ -15,7 +15,8 @@ print("\n---------------------------\n")
 print(tkn.sentence_tokenisation(text))
 print("\n---------------------------\n")
 
-words = ['Connects','Connecting','Connections','Connected','Connection','Connectings','Connect']
+words = ['Connects', 'Connecting', 'Connections',
+         'Connected', 'Connection', 'Connectings', 'Connect']
 
 print("\nPorter Stemmer")
 print(stm.Porter_Stemmer(words), "hello")
@@ -31,7 +32,7 @@ print(stm.Regexp_Stemmer(words))
 
 print("\n---------------------------\n")
 
-words = ['am' ,'are' ,'is','was','were']
+words = ['am', 'are', 'is', 'was', 'were']
 
 # Lemmatize using nltk_lemma
 print("\nNltk Lemmatizer")
@@ -57,9 +58,9 @@ print(lmt.stanza_lemma(sentence))
 print("\nLemminflect Lemmatizer")
 print(lmt.lemminflect_lemma(words))
 
-#POS Tagging
+# POS Tagging
 
-#POS using nltk:
+# POS using nltk:
 
 print("\nNltk POS Tagger")
 
@@ -79,7 +80,7 @@ print(pos.nltk_postag(words=words))
 print("\nSpacy POS Tagger")
 print(pos.spacy_postag(text))
 
-# CHunking (NP, VP, PP)
+# Chunking (NP, VP, PP)
 
 # Chunking using NLTK:
 
@@ -90,7 +91,6 @@ print("\nNLTK Chunking:\n")
 # Chunking using the NLTK library
 
 resultChunks = chink.nltkChunking(text)
-
 resultChunks.pretty_print()
 
 # Chunking using spaCy:
@@ -101,7 +101,6 @@ print("\nspaCy Chunking:\n")
 # chunking but using the spaCy library
 
 resultChunks = chink.spacyChunking(text)
-
 print("Noun Phrases (NP):", resultChunks["NP"])
 print("Verb Phrases (VP):", resultChunks["VP"])
 print("Prepositional Phrases (PP):", resultChunks["PP"])
