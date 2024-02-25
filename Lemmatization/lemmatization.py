@@ -104,7 +104,7 @@ def lemminflect_lemma(words):
     lemmatized_words = []
     
     for word in words:
-        lemmatized_words.append(getLemma(word, upos = pos[words.index(word)]))
+        lemmatized_words.append(getLemma(word, upos = pos[words.index(word)])[0])
         
     return lemmatized_words
 

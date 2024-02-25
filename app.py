@@ -17,7 +17,9 @@ tab_Tokenisation, tab_Stemming, tab_Lemmatization, tab_POS_Tagging, tab_NamedEnt
 
 example_text_Token = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
 example_text_Stemming = "Connects Connecting Connections Connected Connection Connectings Connect"
+example_text_Lemmatization = "best well better was were is am"
 
+# TODO - Add a button to "See example values to auto input some example values"
 
 # Code for Tab - Tokenisation
 with tab_Tokenisation:
@@ -132,7 +134,7 @@ with tab_Stemming:
             
         # If the user selects Regexp Stemmer
         elif stemming_option == "Regexp Stemmer":
-            stemming_output = (stm.Regexp_Stemmer(content))
+            stemming_output = (stm.Regexp_Stemmer(content, regex, minWordLength))
         
     if stemming_output:
         st.write(stemming_output)
@@ -140,7 +142,85 @@ with tab_Stemming:
         st.info("Select a method and input text or upload files to see the output.")    
 
 with tab_Lemmatization:
-    pass
+    
+    with st.expander("Learn about Lemmatization: "):
+        st.write("")
+        
+    st.header("Test it out:")
+    
+    #Choose a method
+    lemma_option = st.selectbox(label="Choose a method for Lemmatization", 
+                                       options=("Nltk Lemmatizer",
+                                                "Spacy Lemmatizer",
+                                                "Stanza Lemmatizer",
+                                                "Lemminflect Lemmatizer"),
+                                       placeholder="Lemmatization method",
+                                       index=None,
+                                       key="lem_methodSel")
+    
+    # If option is chosen as Nltk Lemmatizer give option for either auto or manual pos tagging
+    if lemma_option == "Nltk Lemmatizer":
+        nltk_mode = st.selectbox(label="Choose a method for Lemmatization", 
+                                       options=("Auto POS Tagging",
+                                                "Manual POS Tagging"),
+                                       placeholder="Lemmatization method",
+                                       index=None,
+                                       key="nltk_modeSel")
+        
+        if nltk_mode == "Manual POS Tagging":
+            nltk_pos = st.selectbox(label="Choose a POS for Lemmatization",
+                                        options=("n", "v", "a", "r"),
+                                        placeholder="Select POS tag of the words",
+                                        index=None,
+                                        key="nltk_posSel")
+    
+    # Area to take text input
+    text_inp = st.text_input(label="Enter Words in form of sentence for Lemmatization",
+                             placeholder=example_text_Lemmatization,
+                             key="lem_inp")
+    
+    # Area to take user file upload
+    text_upload = st.file_uploader("Upload File", type=["txt"], key="lem_uploader")
+    
+    lemmatization_output = None
+    
+    # If there is text input or file upload
+    if text_inp or text_upload is not None:
+        
+        # If there is text input, use that, else use the uploaded file
+        if text_inp:
+            content = text_inp
+        else:
+            content = text_upload.read().decode("utf-8")
+            
+        # content = tkn.word_tokenisation(content)
+            
+        # If the user selects Nltk Lemmatizer
+        if lemma_option == "Nltk Lemmatizer":
+            
+            content = tkn.word_tokenisation(content)
+            
+            if nltk_mode == "Manual POS Tagging":
+                lemmatization_output = (lmt.nltk_lemma(content, pos=nltk_pos))
+                
+            if nltk_mode == "Auto POS Tagging":
+                lemmatization_output = (lmt.nltk_lemma_auto(content))
+                
+        if lemma_option == "Spacy Lemmatizer":
+            lemmatization_output = (lmt.spacy_lemma(content))
+            
+        if lemma_option == "Stanza Lemmatizer":
+            lemmatization_output = (lmt.stanza_lemma(content))
+            
+        if lemma_option == "Lemminflect Lemmatizer":
+            
+            content = tkn.word_tokenisation(content)
+            lemmatization_output = (lmt.lemminflect_lemma(content))
+        
+    if lemmatization_output:
+        st.write(lemmatization_output)
+    else:
+        st.info("Select a method and input text or upload files to see the output.")
 
 with tab_POS_Tagging:
     pass
