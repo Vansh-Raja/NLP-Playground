@@ -12,7 +12,6 @@ def Porter_Stemmer(words):
     porter = PorterStemmer()
     for word in words:
         stemmed_words.append(porter.stem(word))
-        # print(word,"--->",porter.stem(word))
     
     return stemmed_words
 
@@ -23,7 +22,6 @@ def SnowBall_Stemmer(words):
     snowball = SnowballStemmer(language='english')
     for word in words:
         stemmed_words.append(snowball.stem(word))    
-        # print(word,"--->",snowball.stem(word))
         
     return stemmed_words
 
@@ -34,19 +32,15 @@ def Lancaster_Stemmer(words):
     lancaster = LancasterStemmer()
     for word in words:
         stemmed_words.append(lancaster.stem(word))
-        # print(word,"--->",lancaster.stem(word))
 
     return stemmed_words
     
-def Regexp_Stemmer(words):
-    
-    #TODO - Can add more parameters here to cutomise the regex and min parameters
+def Regexp_Stemmer(words, regex=r'ing$|s$|e$|able$', minWordLength=4):
     
     stemmed_words = []
     
-    regexp = RegexpStemmer('ing$|s$|e$|able$', min=4)
+    regexp = RegexpStemmer(regexp=regex, min=minWordLength)
     for word in words:
         stemmed_words.append(regexp.stem(word))
-        # print(word,"--->",regexp.stem(word))
 
     return stemmed_words

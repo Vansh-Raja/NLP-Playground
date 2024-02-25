@@ -15,7 +15,9 @@ st.title("NLP Project")
 # Adding the multiple tabs for all the different processings
 tab_Tokenisation, tab_Stemming, tab_Lemmatization, tab_POS_Tagging, tab_NamedEntityRecognition, tab_Chunking =  st.tabs(["Tokenisation", "Stemming", "Lemmatization", "POS Tagging", "Named Entity Recognition", "Chunking"])
 
-example_text = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
+example_text_Token = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
+example_text_Stemming = "Connects Connecting Connections Connected Connection Connectings Connect"
+
 
 # Code for Tab - Tokenisation
 with tab_Tokenisation:
@@ -34,7 +36,7 @@ with tab_Tokenisation:
     
     # Area to take text input
     text_inp = st.text_input(label="Enter Text for Tokenisation",
-                             placeholder=example_text,
+                             placeholder=example_text_Token,
                              key="token_inp")
     
     # Area to take user file upload
@@ -62,11 +64,80 @@ with tab_Tokenisation:
     if tokenisation_output:
         st.write(tokenisation_output)
     else:
-        st.info("Select a method and input text or upload files to see the output.")    
-        
-
+        st.info("Select a method and input text or upload files to see the output.")
+            
 with tab_Stemming:
-    pass
+    
+    #TODO - Add option to display output while comparing all Stemmers
+    
+    with st.expander("Learn about Stemming: "):
+        st.write("")
+        
+    st.header("Test it out:")
+    
+    #Choose a method
+    stemming_option = st.selectbox(label="Choose a method for Stemming", 
+                                       options=("Porter Stemmer",
+                                                "Snowball Stemmer",
+                                                "Lancaster Stemmer",
+                                                "Regexp Stemmer"),
+                                       placeholder="Stemming method",
+                                       index=None,
+                                       key="stem_methodSel")
+    
+    if stemming_option == "Regexp Stemmer":
+        regex = st.text_input(label="Enter the Regex for Regexp Stemmer",
+                              value="ing$|s$|e$|able$",
+                              key="regex_inp")
+        
+        minWordLength = st.number_input(label="Enter the minimum word length for Regexp Stemmer",
+                                       min_value=1,
+                                       max_value=100,
+                                       value=4,
+                                       step=1,
+                                       key="minWordLength_inp")
+    
+    # Area to take text input
+    text_inp = st.text_input(label="Enter Words in form of sentence for Stemming",
+                             placeholder=example_text_Stemming,
+                             key="stem_inp")
+    
+    # Area to take user file upload
+    text_upload = st.file_uploader("Upload File", type=["txt"], key="stem_uploader")
+    
+    stemming_output = None
+    
+    # If there is text input or file upload
+    if text_inp or text_upload is not None:
+        
+        # If there is text input, use that, else use the uploaded file
+        if text_inp:
+            content = text_inp
+        else:
+            content = text_upload.read().decode("utf-8")
+            
+        content = tkn.word_tokenisation(content)
+            
+        # If the user selects Porter Stemmer
+        if stemming_option == "Porter Stemmer":
+            stemming_output = (stm.Porter_Stemmer(content))
+            
+        # If the user selects Snowball Stemmer
+        elif stemming_option == "Snowball Stemmer":
+            stemming_output = (stm.SnowBall_Stemmer(content))
+        
+        # If the user selects Lancaster Stemmer
+        elif stemming_option == "Lancaster Stemmer":
+            stemming_output = (stm.Lancaster_Stemmer(content))
+            
+        # If the user selects Regexp Stemmer
+        elif stemming_option == "Regexp Stemmer":
+            stemming_output = (stm.Regexp_Stemmer(content))
+        
+    if stemming_output:
+        st.write(stemming_output)
+    else:
+        st.info("Select a method and input text or upload files to see the output.")    
 
 with tab_Lemmatization:
     pass
@@ -85,7 +156,7 @@ with tab_NamedEntityRecognition:
 
     # Area to take text input 
     text_inp = st.text_input(label="Enter Text for Named Entity Recognition",
-                             value=example_text,
+                             value=example_text_Token,
                              key="ner_inp")
     st.write(ner.spacy_ner(text_inp))
 
