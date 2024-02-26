@@ -9,12 +9,11 @@ def nltk_postag(sentence: str = None, words: list = None):
     
     return nltk.pos_tag(word_tokenize(sentence))
 
-def spacy_postag(sentence: str, model=0):
-    
-    models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
-    
+def spacy_postag(sentence: str, model="en_core_web_sm"):
+
     try:
-        spacy_model = spacy.load(models[model])
+        print(f"Using model {model}")
+        spacy_model = spacy.load(model)
     except:
         print("Model not found, using default model en_core_web_sm")
         spacy_model = spacy.load('en_core_web_sm')

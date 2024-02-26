@@ -144,7 +144,19 @@ with tab_Stemming:
 with tab_Lemmatization:
     
     with st.expander("Learn about Lemmatization: "):
-        st.write("")
+        "Different types of spacy models:"
+
+        st.text("1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition,")
+        st.text("suitable for lightweight text processing tasks.")
+
+        st.text("2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional")
+        st.text("features compared to the small model, suitable for a wide range of text processing tasks.")
+
+        st.text("3. **en_core_web_lg**: Large model providing high accuracy and coverage, including word vectors")
+        st.text("and extra data, suitable for advanced text analysis requiring more computational resources.")
+
+        st.text("4. **en_core_web_trf**: Transformer-based model using state-of-the-art architecture for text")
+        st.text("processing tasks, offering top performance but requiring significant computational resources.")
         
     st.header("Test it out:")
     
@@ -173,6 +185,13 @@ with tab_Lemmatization:
                                         placeholder="Select POS tag of the words",
                                         index=None,
                                         key="nltk_posSel")
+    
+    if lemma_option == "Spacy Lemmatizer":
+        spacy_model = st.selectbox(label="Choose a Spacy model for Lemmatization", 
+                                       options=("en_core_web_sm", "en_core_web_md", "en_core_web_lg", "en_core_web_trf"),
+                                       placeholder="Spacy model",
+                                       index=None,
+                                       key="spacy_modelSel_Lemma")
     
     # Area to take text input
     text_inp = st.text_input(label="Enter Words in form of sentence for Lemmatization",
@@ -207,7 +226,7 @@ with tab_Lemmatization:
                 lemmatization_output = (lmt.nltk_lemma_auto(content))
                 
         if lemma_option == "Spacy Lemmatizer":
-            lemmatization_output = (lmt.spacy_lemma(content))
+            lemmatization_output = (lmt.spacy_lemma(content, model=spacy_model))
             
         if lemma_option == "Stanza Lemmatizer":
             lemmatization_output = (lmt.stanza_lemma(content))
@@ -223,7 +242,70 @@ with tab_Lemmatization:
         st.info("Select a method and input text or upload files to see the output.")
 
 with tab_POS_Tagging:
-    pass
+    
+    with st.expander("Learn about POS Tagging: "):
+        "Different types of spacy models:"
+
+        st.text("1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition,")
+        st.text("suitable for lightweight text processing tasks.")
+
+        st.text("2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional")
+        st.text("features compared to the small model, suitable for a wide range of text processing tasks.")
+
+        st.text("3. **en_core_web_lg**: Large model providing high accuracy and coverage, including word vectors")
+        st.text("and extra data, suitable for advanced text analysis requiring more computational resources.")
+
+        st.text("4. **en_core_web_trf**: Transformer-based model using state-of-the-art architecture for text")
+        st.text("processing tasks, offering top performance but requiring significant computational resources.")
+        
+    st.header("Test it out:")
+    
+    #Choose a method
+    pos_option = st.selectbox(label="Choose a method for Lemmatization", 
+                                       options=("Nltk POS Tagger",
+                                                "Spacy POS Tagger"),
+                                       placeholder="POS Tagging Library",
+                                       index=None,
+                                       key="pos_methodSel")
+    
+    # If option is chosen as Spacy POS Tagger, give model selection option
+    if pos_option == "Spacy POS Tagger":
+        spacy_model = st.selectbox(label="Choose a Spacy model for POS Tagging", 
+                                       options=("en_core_web_sm", "en_core_web_md", "en_core_web_lg", "en_core_web_trf"),
+                                       placeholder="Spacy model",
+                                       index=None,
+                                       key="spacy_modelSel_POS")
+    
+    # Area to take text input
+    text_inp = st.text_input(label="Enter Words in form of sentence for POS Tagging",
+                             placeholder=example_text_Lemmatization,
+                             key="pos_inp")
+    
+    # Area to take user file upload
+    text_upload = st.file_uploader("Upload File", type=["txt"], key="pos_uploader")
+    
+    pos_output = None
+    
+    # If there is text input or file upload
+    if text_inp or text_upload is not None:
+        
+        # If there is text input, use that, else use the uploaded file
+        if text_inp:
+            content = text_inp
+        else:
+            content = text_upload.read().decode("utf-8")
+        
+        # If the user selects NLTK POS Tagger    
+        if pos_option == "Nltk POS Tagger":
+            pos_output = (pos.nltk_postag(sentence=content))
+            
+        if pos_option == "Spacy POS Tagger":
+            pos_output = (pos.spacy_postag(sentence=content, model=spacy_model))
+        
+    if pos_output:
+        st.write(pos_output)
+    else:
+        st.info("Select a method and input text or upload files to see the output.")
 
 # Code for Tab - Named Entity Recognition
 with tab_NamedEntityRecognition:

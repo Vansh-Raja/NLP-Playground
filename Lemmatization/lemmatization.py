@@ -62,11 +62,11 @@ and extra data, suitable for advanced text analysis requiring more computational
 processing tasks, offering top performance but requiring significant computational resources.
 """
 
-def spacy_lemma(sentence, model=0):
+def spacy_lemma(sentence, model="en_core_web_sm"):
         
-    models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
     try:
-        spacy_model = spacy.load(models[model])
+        print(f"Using model {model}")
+        spacy_model = spacy.load(model)
         
     except:
         print("Model not found, using default model en_core_web_sm")
