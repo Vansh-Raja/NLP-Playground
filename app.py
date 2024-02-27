@@ -315,19 +315,51 @@ with tab_NamedEntityRecognition:
         st.write("")
         
     st.header("Test it out:")
+    
+    # Choose a method
+    ner_option = st.selectbox(label="Choose a method for Named Entity Recognition", 
+                              options=("Spacy", "Stanza"),
+                              placeholder="Named Entity Recognition method",
+                              index=None,
+                              key="ner_methodSel")
+    
+    if ner_option == "Spacy":
+        spacy_model = st.selectbox(label="Choose a Spacy model for Named Entity Recognition", 
+                                       options=("en_core_web_sm", "en_core_web_md", "en_core_web_lg", "en_core_web_trf"),
+                                       placeholder="Spacy model",
+                                       index=None,
+                                       key="spacy_modelSel_NER")
 
-    # Area to take text input 
-    text_inp = st.text_input(label="Enter Text for Named Entity Recognition",
-                             value=example_text_Token,
+    # Area to take text input
+    text_inp = st.text_input(label="Enter Words in form of sentence for POS Tagging",
+                             placeholder=example_text_Lemmatization,
                              key="ner_inp")
-    st.write(ner.spacy_ner(text_inp))
-
+    
     # Area to take user file upload
     text_upload = st.file_uploader("Upload File", type=["txt"], key="ner_uploader")
-
-    if text_upload is not None:
-        file_contents = text_upload.read().decode("utf-8")
-        st.write(ner.spacy_ner((file_contents)))
+        
+    ner_output = None
+    
+    # If there is text input or file upload
+    if text_inp or text_upload is not None:
+        
+        # If there is text input, use that, else use the uploaded file
+        if text_inp:
+            content = text_inp
+        else:
+            content = text_upload.read().decode("utf-8")
+        
+        # If the user selects NLTK POS Tagger    
+        if ner_option == "Spacy":
+            ner_output = (ner.spacy_ner(sentence=content,model=spacy_model))
+            
+        if ner_option == "Stanza":
+            ner_output = (ner.stanza_ner(sentence=content))
+        
+    if ner_output:
+        st.write(ner_output)
+    else:
+        st.info("Select a method and input text or upload files to see the output.")
         
 with tab_Chunking:
     pass

@@ -1,11 +1,13 @@
 import spacy
+import stanza
+
+#TODO: Add more methods for NER
 
 def spacy_ner(sentence: str, model=0):
     
-    models = ['en_core_web_sm', 'en_core_web_md', 'en_core_web_lg', 'en_core_web_trf']
-    
     try:
-        spacy_model = spacy.load(models[model])
+        print(f"Using model {model}")
+        spacy_model = spacy.load(model)
     except:
         print("Model not found, using default model en_core_web_sm")
         spacy_model = spacy.load('en_core_web_sm')
@@ -15,4 +17,16 @@ def spacy_ner(sentence: str, model=0):
     for ent in processed.ents:
         ner[ent.text] = ent.label_
         
+    return ner
+
+def stanza_ner(sentence: str):
+    
+    nlp = stanza.Pipeline(lang='en', processors='tokenize,ner')
+    doc = nlp(sentence)
+    
+    ner = {}
+    for sentence in doc.sentences:
+        for ent in sentence.ents:
+            ner[ent.text] = ent.type
+            
     return ner
