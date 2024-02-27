@@ -67,7 +67,8 @@ with tab_Tokenisation:
         st.write(tokenisation_output)
     else:
         st.info("Select a method and input text or upload files to see the output.")
-            
+ 
+# Code for Tab - Stemming           
 with tab_Stemming:
     
     #TODO - Add option to display output while comparing all Stemmers
@@ -141,6 +142,7 @@ with tab_Stemming:
     else:
         st.info("Select a method and input text or upload files to see the output.")    
 
+# Code for Tab - Lemmatization
 with tab_Lemmatization:
     
     with st.expander("Learn about Lemmatization: "):
@@ -241,6 +243,7 @@ with tab_Lemmatization:
     else:
         st.info("Select a method and input text or upload files to see the output.")
 
+# Code for Tab - POS Tagging
 with tab_POS_Tagging:
     
     with st.expander("Learn about POS Tagging: "):
@@ -356,7 +359,7 @@ with tab_NamedEntityRecognition:
         if ner_option == "Stanza":
             ner_output = (ner.stanza_ner(sentence=content))
         
-    if ner_output:
+    if _output:
         st.write(ner_output)
     else:
         st.info("Select a method and input text or upload files to see the output.")
