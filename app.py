@@ -281,7 +281,7 @@ with tab_POS_Tagging:
     
     # Area to take text input
     text_inp = st.text_input(label="Enter Words in form of sentence for POS Tagging",
-                             placeholder=example_text_Lemmatization,
+                             placeholder=example_text_Token,
                              key="pos_inp")
     
     # Area to take user file upload
@@ -359,7 +359,7 @@ with tab_NamedEntityRecognition:
         if ner_option == "Stanza":
             ner_output = (ner.stanza_ner(sentence=content))
         
-    if _output:
+    if ner_output:
         st.write(ner_output)
     else:
         st.info("Select a method and input text or upload files to see the output.")
