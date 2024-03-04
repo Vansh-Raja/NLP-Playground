@@ -365,4 +365,8 @@ with tab_NamedEntityRecognition:
         st.info("Select a method and input text or upload files to see the output.")
         
 with tab_Chunking:
-    pass
+    
+    with st.expander("Learn about Chunking:"):
+        st.write("")
+        
+    st.header("Test it out:")

@@ -2,6 +2,8 @@ import nltk
 from nltk.tokenize import word_tokenize
 import spacy
 
+#TODO - Add TextBlob Library Processing
+
 def nltk_postag(sentence: str = None, words: list = None):
     
     if words is not None:
