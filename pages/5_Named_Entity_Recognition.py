@@ -1,6 +1,7 @@
 import streamlit as st
 from NamedEntityRecognition import namedentityrecognition as ner
 
+
 st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
 
 example_text_NER = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
@@ -26,7 +27,7 @@ if ner_option == "Spacy":
                                     key="spacy_modelSel_NER")
 
 # Area to take text input
-text_inp = st.text_input(label="Enter Words in form of sentence for POS Tagging",
+text_inp = st.text_input(label="Enter Words in form of sentence for Named Entity Recognition",
                             placeholder=example_text_NER,
                             key="ner_inp")
 
