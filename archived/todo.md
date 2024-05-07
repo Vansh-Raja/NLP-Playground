@@ -1,0 +1,3 @@
+- Add option to display output while comparing all Stemmers
+- Update the Learn about sections of all the Methods
+- Add Parse Tree display to chunking

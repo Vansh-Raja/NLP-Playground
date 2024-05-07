@@ -4,15 +4,29 @@ import Tokenisation as tkn
 from Stemming import stemming as stm
 
 st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
-
+st.title("Stemming")
 example_text_Stemming = "Connects Connecting Connections Connected Connection Connectings Connect"
 
-#TODO - Add option to display output while comparing all Stemmers
+intro_text = """ 
+*Stemming is the process of reducing words to their root or base form, known as the stem.*
 
+Stemmers eliminate word suffixes by running input word tokens against a predefined list of common suffixes. Performing this text-processing technique is often useful for dealing with sparsity and/or standardizing vocabulary. Stemming not only helps with reducing redundancy, as most of the time the word stem and their inflected words have the same meaning. There are several kinds of stemming algorithms, and all of them are included in Python NLTK:
+
+- **Porter Stemmer**
+- **Snowball Stemmer**
+- **Lancaster Stemmer**
+- **Regexp Stemmer**
+
+The Snowball and Porter stemmer algorithms have a more mathematical method of eliminating suffixes than other stemmers.
+
+**Try it out with the following example:**
+
+*Connects Connecting Connections Connected Connection Connectings Connect*
+"""
 with st.expander("Learn about Stemming: "):
-    st.write("")
+    st.markdown(intro_text)
     
-st.header("Test it out:")
+st.markdown("### Try it out:")
 
 #Choose a method
 stemming_option = st.selectbox(label="Choose a method for Stemming", 

@@ -4,25 +4,38 @@ from Tokenisation import tokenisation as tkn
 from Lemmatization import lemmatization as lmt
 
 st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.title("Lemmatization")
 
 example_text_Lemmatization = "best well better was were is am"
 
+intro_text = """
+*Lemmatization is similar to stemming, but it aims to reduce words to their base or dictionary form known as the **lemma** based on their intended meaning.*
+
+This makes it easier to analyze text data accurately. Lemmatization aims to output dictionary base forms; it requires more robust morphological analysis than stemming, guaranteeing that the output is a valid word form found in the dictionary. 
+
+Lemmatization has its application in Chatbots, human-answering, etc. However, it is computationally expensive since it involves look-up tables and other operations.
+
+**Try it out with the following example:**
+
+*best well better was were is am*
+"""
 with st.expander("Learn about Lemmatization: "):
-    "Different types of spacy models:"
+    st.markdown(intro_text)
 
-    st.text("1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition,")
-    st.text("suitable for lightweight text processing tasks.")
+spacy_intro_text = """
+1. **en_core_web_sm**: Small model with basic vocabulary, syntax, and named entity recognition, suitable for lightweight text processing tasks.
 
-    st.text("2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional")
-    st.text("features compared to the small model, suitable for a wide range of text processing tasks.")
+2. **en_core_web_md**: Medium-sized model offering improved accuracy and coverage with additional features compared to the small model, suitable for a wide range of text processing tasks.
 
-    st.text("3. **en_core_web_lg**: Large model providing high accuracy and coverage, including word vectors")
-    st.text("and extra data, suitable for advanced text analysis requiring more computational resources.")
+3. **en_core_web_lg**: Large model providing high accuracy and coverage, including word vectors and extra data, suitable for advanced text analysis requiring more computational resources.
 
-    st.text("4. **en_core_web_trf**: Transformer-based model using state-of-the-art architecture for text")
-    st.text("processing tasks, offering top performance but requiring significant computational resources.")
+4. **en_core_web_trf**: Transformer-based model using state-of-the-art architecture for text processing tasks, offering top performance but requiring significant computational resources.
+
+"""
+with st.expander("Different Spacy Models:"):
+    st.markdown(spacy_intro_text)
     
-st.header("Test it out:")
+st.markdown("### Try it out:")
 
 #Choose a method
 lemma_option = st.selectbox(label="Choose a method for Lemmatization", 
