@@ -1,5 +1,9 @@
 import streamlit as st
 
+import nltk
+nltk.download('punkt')
+nltk.download('averaged_perceptron_tagger')
+
 st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 
 st.markdown("""# NLP Playground!

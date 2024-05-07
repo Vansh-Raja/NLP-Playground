@@ -3,7 +3,7 @@ import streamlit as st
 import Tokenisation as tkn
 from Stemming import stemming as stm
 
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("Stemming")
 example_text_Stemming = "Connects Connecting Connections Connected Connection Connectings Connect"
 

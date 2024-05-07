@@ -3,9 +3,8 @@ import streamlit as st
 from Tokenisation import tokenisation as tkn
 from Lemmatization import lemmatization as lmt
 
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("Lemmatization")
-
 example_text_Lemmatization = "best well better was were is am"
 
 intro_text = """

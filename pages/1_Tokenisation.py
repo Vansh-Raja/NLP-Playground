@@ -3,7 +3,7 @@ from Tokenisation import tokenisation as tkn
 
 example_text_Token = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
 
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("Tokenisation")
 
 intro_text = """

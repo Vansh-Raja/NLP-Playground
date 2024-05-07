@@ -2,7 +2,7 @@ import streamlit as st
 from NamedEntityRecognition import namedentityrecognition as ner
 
 
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("Named Entity Recognition")
 example_text_NER = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
 

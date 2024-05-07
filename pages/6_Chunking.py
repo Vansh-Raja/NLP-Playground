@@ -1,11 +1,7 @@
 import streamlit as st
 from Chunking import chunking as chink
 
-import nltk
-nltk.download('punkt')
-nltk.download('averaged_perceptron_tagger')
-
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("Chunking")
 
 example_text_Chunking = "The quick brown fox jumps over the lazy dog."

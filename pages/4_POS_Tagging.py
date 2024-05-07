@@ -1,7 +1,7 @@
 import streamlit as st
 from POS_Tagging import pos_tagging as pos
 
-st.set_page_config(page_title="NLP Project", page_icon=":book:", layout="wide")
+st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
 st.title("POS Tagging")
 example_text_POS = "Steve, the quick brown fox, jumps over the lazy dog, Alan. It happened yesterday in the park."
 
