@@ -1,6 +1,6 @@
 import streamlit as st
 
-import Tokenisation as tkn
+from Tokenisation import tokenisation as tkn
 from Stemming import stemming as stm
 
 st.set_page_config(page_title="NLP Playground", page_icon=":video_game:", layout="wide")
